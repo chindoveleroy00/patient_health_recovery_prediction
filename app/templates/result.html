@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="result-container">
+    <h2 class="result-title">🏥 Prediction Result</h2>
+    <div class="result-content">
+        <p>
+            Patient <span class="result-highlight">{{ name }}</span> is predicted to recover in 
+            <span class="result-highlight">{{ days }} days</span>.
+        </p>
+        <div style="margin-top: 20px; padding: 20px; background-color: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+            <p style="margin: 0; color: #666; font-size: 0.95rem;">
+                <strong>Note:</strong> This prediction is based on the provided medical data and should be used as a reference only. 
+                Please consult with healthcare professionals for medical decisions.
+            </p>
+        </div>
+    </div>
+    <a href="{{ url_for('main.index') }}" class="back-link">🔄 Predict Another Patient</a>
+</div>
+{% endblock %}

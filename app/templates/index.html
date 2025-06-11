@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="form-title">Patient Recovery Prediction</h1>
+    
+    <form method="POST" class="patient-form">
+        {{ form.hidden_tag() }}
+        
+        <!-- Personal Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">Personal Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-input") }}
+                    {% if form.name.errors %}
+                        <div class="error-message">{{ form.name.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.age.label(class="form-label") }}
+                    {{ form.age(class="form-input") }}
+                    {% if form.age.errors %}
+                        <div class="error-message">{{ form.age.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.gender.label(class="form-label") }}
+                    {{ form.gender(class="form-select") }}
+                    {% if form.gender.errors %}
+                        <div class="error-message">{{ form.gender.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.admission_date.label(class="form-label") }}
+                    {{ form.admission_date(class="form-input") }}
+                    {% if form.admission_date.errors %}
+                        <div class="error-message">{{ form.admission_date.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">Medical Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.bmi.label(class="form-label") }}
+                    {{ form.bmi(class="form-input", step="0.1") }}
+                    {% if form.bmi.errors %}
+                        <div class="error-message">{{ form.bmi.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.blood_pressure.label(class="form-label") }}
+                    {{ form.blood_pressure(class="form-input") }}
+                    {% if form.blood_pressure.errors %}
+                        <div class="error-message">{{ form.blood_pressure.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.heart_rate.label(class="form-label") }}
+                    {{ form.heart_rate(class="form-input") }}
+                    {% if form.heart_rate.errors %}
+                        <div class="error-message">{{ form.heart_rate.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.preexisting_condition.label(class="form-label") }}
+                    {{ form.preexisting_condition(class="form-input") }}
+                    {% if form.preexisting_condition.errors %}
+                        <div class="error-message">{{ form.preexisting_condition.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Admission Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">Admission Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.admission_reason.label(class="form-label") }}
+                    {{ form.admission_reason(class="form-select") }}
+                    {% if form.admission_reason.errors %}
+                        <div class="error-message">{{ form.admission_reason.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.admission_type.label(class="form-label") }}
+                    {{ form.admission_type(class="form-select") }}
+                    {% if form.admission_type.errors %}
+                        <div class="error-message">{{ form.admission_type.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.ward_type.label(class="form-label") }}
+                    {{ form.ward_type(class="form-select") }}
+                    {% if form.ward_type.errors %}
+                        <div class="error-message">{{ form.ward_type.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.diagnosis.label(class="form-label") }}
+                    {{ form.diagnosis(class="form-select") }}
+                    {% if form.diagnosis.errors %}
+                        <div class="error-message">{{ form.diagnosis.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Treatment Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">Treatment Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.treatment_type.label(class="form-label") }}
+                    {{ form.treatment_type(class="form-select") }}
+                    {% if form.treatment_type.errors %}
+                        <div class="error-message">{{ form.treatment_type.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.medication_given.label(class="form-label") }}
+                    {{ form.medication_given(class="form-select") }}
+                    {% if form.medication_given.errors %}
+                        <div class="error-message">{{ form.medication_given.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.procedures_count.label(class="form-label") }}
+                    {{ form.procedures_count(class="form-input") }}
+                    {% if form.procedures_count.errors %}
+                        <div class="error-message">{{ form.procedures_count.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.duration_of_treatment.label(class="form-label") }}
+                    {{ form.duration_of_treatment(class="form-input") }}
+                    {% if form.duration_of_treatment.errors %}
+                        <div class="error-message">{{ form.duration_of_treatment.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Status Section -->
+        <div class="form-section">
+            <h3 class="section-title">Health Status</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.smoking_status.label(class="form-label") }}
+                    {{ form.smoking_status(class="form-select") }}
+                    {% if form.smoking_status.errors %}
+                        <div class="error-message">{{ form.smoking_status.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.severity.label(class="form-label") }}
+                    {{ form.severity(class="form-select") }}
+                    {% if form.severity.errors %}
+                        <div class="error-message">{{ form.severity.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group checkbox-group">
+                    {{ form.complications(class="form-checkbox") }}
+                    {{ form.complications.label(class="checkbox-label") }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-submit">
+            {{ form.submit(class="submit-btn") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

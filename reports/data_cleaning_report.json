@@ -1,0 +1,5 @@
+{
+  "original_rows": 100000,
+  "rows_after_dropna": 89923,
+  "rows_after_filtering": 89922
+}

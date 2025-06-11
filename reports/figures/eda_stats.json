@@ -1,0 +1,22 @@
+{
+  "missing_values": {
+    "patient_id": 0,
+    "age": 0,
+    "gender": 0,
+    "bmi": 0,
+    "smoking_status": 0,
+    "preexisting_condition": 39919,
+    "admission_reason": 0,
+    "severity": 0,
+    "ward_type": 0,
+    "treatment_type": 0,
+    "procedures_count": 0,
+    "blood_pressure": 0,
+    "heart_rate": 0,
+    "complications": 0,
+    "recovery_days": 0
+  },
+  "recovery_days_stats": {
+    "mean": 14.63298,
+    "std": 5.606472210303592,
+    "min": 

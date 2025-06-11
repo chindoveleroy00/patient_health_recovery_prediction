@@ -1,0 +1,33 @@
+{
+  "total_patients": 100000,
+  "avg_recovery_days": 14.63298,
+  "max_recovery_days": 32,
+  "min_recovery_days": 3,
+  "median_recovery_days": 14.0,
+  "age_distribution": {
+    "min": 18,
+    "max": 89,
+    "mean": 53.34714,
+    "median": 53.0
+  },
+  "gender_distribution": {
+    "Female": 50112,
+    "Male": 49888
+  },
+  "severity_distribution": {
+    "Moderate": 49843,
+    "Mild": 30039,
+    "Severe": 20118
+  },
+  "ward_distribution": {
+    "ICU": 33440,
+    "Emergency": 33348,
+    "General": 33212
+  },
+  "treatment_distribution": {
+    "Surgery": 33407,
+    "Medication": 33334,
+    "Therapy": 33259
+  },
+  "complication_rate": 0.19846
+}
