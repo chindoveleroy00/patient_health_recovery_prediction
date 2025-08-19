@@ -1,6 +1,9 @@
+import os
+from pathlib import Path
+
 class Config:
     SECRET_KEY = 'your-secret-key'
-    MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = ''  # Your XAMPP MySQL password if set
-    MYSQL_DB = 'patient_recovery'
+    # SQLite database configuration - pointing to database folder
+    BASE_DIR = Path(__file__).resolve().parent
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{BASE_DIR}/database/patient_recovery.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -2,10 +2,12 @@ import os
 import sys
 from flask import Flask
 from pathlib import Path
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 
-# Initialize MySQL outside the create_app function
-mysql = MySQL()
+# Initialize SQLAlchemy outside the create_app function
+db = SQLAlchemy()
+
 
 def create_app(test_config=None):
     # Create and configure the app
@@ -22,14 +24,12 @@ def create_app(test_config=None):
         if path not in sys.path:
             sys.path.insert(0, path)
 
-    # Basic configuration for XAMPP MySQL (phpMyAdmin)
+    # Basic configuration for SQLite - pointing to database folder
+    BASE_DIR = Path(__file__).resolve().parents[1]
     app.config.from_mapping(
         SECRET_KEY='dev',  # Replace with a secure key in production
-        MYSQL_HOST='localhost',
-        MYSQL_USER='root',
-        MYSQL_PASSWORD='',  # Set your MySQL password if it's not empty
-        MYSQL_DB='patient_recovery',
-        MYSQL_CURSORCLASS='DictCursor'  # Optional: for dict-like results
+        SQLALCHEMY_DATABASE_URI=f'sqlite:///{BASE_DIR}/database/patient_recovery.db',
+        SQLALCHEMY_TRACK_MODIFICATIONS=False
     )
 
     # Load additional config from file or test config
@@ -38,14 +38,47 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    # Ensure the instance folder exists
+    # Ensure the database folder exists
     try:
-        os.makedirs(app.instance_path)
+        os.makedirs(BASE_DIR / 'database', exist_ok=True)
     except OSError:
         pass
 
-    # Initialize MySQL
-    mysql.init_app(app)
+    # Initialize SQLAlchemy
+    db.init_app(app)
+
+    # Create tables if they don't exist
+    with app.app_context():
+        db.create_all()
+
+        # Create the patients table if it doesn't exist
+        db.session.execute(text("""
+            CREATE TABLE IF NOT EXISTS patients (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                age INTEGER,
+                bmi REAL,
+                blood_pressure TEXT,
+                heart_rate INTEGER,
+                procedures_count INTEGER,
+                duration_of_treatment INTEGER,
+                gender TEXT,
+                admission_reason TEXT,
+                admission_type TEXT,
+                ward_type TEXT,
+                treatment_type TEXT,
+                medication_given TEXT,
+                diagnosis TEXT,
+                smoking_status TEXT,
+                complications TEXT,
+                severity TEXT,
+                admission_date DATE,
+                preexisting_condition TEXT,
+                predicted_recovery_days INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """))
+        db.session.commit()
 
     # Register your blueprints
     from .routes import main

@@ -11,3 +11,5 @@ xgboost~=3.0.0
 sympy~=1.13.3
 scipy~=1.15.2
 setuptools~=78.1.0
+# Add these for SQLite support
+Flask-SQLAlchemy~=3.1.1
